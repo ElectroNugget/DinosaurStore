@@ -1,0 +1,92 @@
+body {
+  background-color: whitesmoke !important;
+  background-image: url(../images/Backgrounds/HexBG.jpg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 100%;
+  padding-top: 56px ;
+}
+
+.index-container {
+  width:60%;
+  padding: 10px;
+  margin:auto;
+}
+
+.container {
+  padding: 5px;
+}
+
+.productName {
+  padding: 10px;
+  color: #444444;
+}
+
+.productInfoContainer {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  color: #444444;
+
+  border: 1px solid #aaa;
+  border-radius: 15px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1em;
+  margin: 0 0 1em 0;
+}
+
+.productInfoContainer hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.productDescription {
+  width: 50%;
+  order: 1;
+  min-width: 350px;
+  /* border: 1px solid #aaa; */
+  border-radius: 3px;
+  /* box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); */
+  padding: 1em;
+  margin: 0 0 1em 0;
+}
+
+.productDetails {
+  width: 50%;
+  order: 1;
+  min-width: 350px;
+  /* border: 1px solid #aaa; */
+  border-radius: 3px;
+  /* box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); */
+  padding: 1em;
+  margin: 0 0 1em 0;
+}
+
+.productOptions {
+  text-align: center;
+  padding: 10px;
+  width: 50%;
+  order: 2;
+  min-width: 350px;
+}
+
+.productOptions h5 {
+  padding: 5px 0px 0px 0px;
+}
+
+.jumbotron {
+  background-image: url("../images/ruinsSplash.jpg");
+  background-size: cover;
+  color: whitesmoke;
+}
+
+.card-img-top {
+  padding: 10px;
+}

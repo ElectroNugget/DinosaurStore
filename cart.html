@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>DinoStore: Your Cart</title>
+    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <!-- Bootstrap imports. -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- My own scripts -->
+    <script src="js/cart.js"></script>
+    <script src="js/injectionScripts.js"></script>
+    <script src="js/userDetails.js"></script>
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/225b9a9be5.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div id="injectNavBar"></div>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">Your Cart</div>
+        <div id="cartBox" class="container text-center">
+          <h3 id="message">Hello Guest, here's your cart.</h3>
+          <p>Free shipping for dino orders over 100 tonnes!</p>
+
+          <div class="card-body">
+            <table id="cartTable" class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scole="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody id="injectTable"></tbody>
+            </table>
+
+            <hr />
+            <h6>Total Price:</h6>
+            <p id="totalPrice"></p>
+            <hr />
+
+            <button type="button" class="btn btn-primary" onclick="checkout()">
+              Checkout
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="emptyCart()"
+            >
+              Empty Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    renderCart();
+
+    function renderCart() {
+      document.body.onload = injectNavBar();
+      document.body.onload = injectUserName(
+        "message",
+        "Hello ",
+        ", here's your cart."
+      );
+      document.body.onload = populateCart();
+    }
+  </script>
+</html>

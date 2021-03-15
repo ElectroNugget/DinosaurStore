@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>DinoStore</title>
+    <link rel="stylesheet" href="./css/stylesheet.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <!-- Bootstrap imports. -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- My scripts -->
+    <script src="js/injectionScripts.js"></script>
+    <script src="js/dinoStorage.js"></script>
+    <script src="js/displayStorage.js"></script>
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/225b9a9be5.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div id="injectNavBar"></div>
+    <div id="injectJumbotron"></div>
+
+    <!-- This is the card display, holds all items. -->
+    <div class="cardDisplay">
+      <div class="container text-center">
+        <h2 id="CategoryTitle">Great Dinosaurs at great prices!</h2>
+        <p id="CategoryDescription">
+          Don't miss our spring sale!
+        </p>
+
+        <div class="card-deck">
+          <div id="injectCards"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      renderProdDisplay();
+
+      //Renders the whole page by calling all these other functions in the correct order.
+      function renderProdDisplay() {
+        let params = new URLSearchParams(document.location.search.substring(1));
+        //get these values from the query.
+        let productKey = params.get("productKey");
+        let productValue = params.get("productValue");
+        //This generates our navbar, jumbotron and cards.
+        document.body.onload = injectNavBar();
+        document.body.onload = injectJumbotron(productValue);
+        document.body.onload = generateCards(
+          filterProducts(dinoArray, productKey, productValue)
+        );
+      }
+
+      //Injects a jumbotron into the page depending on the query type.
+      function injectJumbotron(query) {
+        let jumboObj = displayArray.filter((object) => {
+          return object.displayType === query;
+        })[0];
+        document.getElementById(
+          "injectJumbotron"
+        ).innerHTML = `<div class="jumbotron jumbotron-fluid" style="background-image: url(images/Banners/${jumboObj.bannerImage}); height:300px;">
+          <div class="container" style="text-align:center">
+            <h3 class="display-4">${jumboObj.title}</h3>
+            <p id="jumbotronText" class="lead">${jumboObj.bannerText}</p>
+          </div>
+         </div>`;
+      }
+
+      //This function generates cards for the product display from a given array.
+      function generateCards(array) {
+        array.forEach((product) => {
+          document.getElementById(
+            "injectCards"
+          ).innerHTML += `<div class="col-sm-4" style="float:left; margin-bottom:3em">
+            <div class="card bg-dark text-white" style="width: 18rem;">
+              <a href="prodDescription.html?dinosaur=${
+                product.productName
+              }" class="btn btn-light">
+                <img class="card-img-top" src="images/Thumbs/SquareThumbs/${
+                  product.productName
+                }.png" alt="Card image cap"></a>
+                <div class="card-body">
+                    <a href="prodDescription.html?dinosaur=${
+                      product.productName
+                    }">
+                      <h5 class="card-title">${product.productName}</h5>
+                    </a>
+                    <h6 class="card-title">${product.manufacturer}</h6>
+                    <p class="card-text">${product.price.toLocaleString()} USD</p> 
+                </div>
+              </div>
+            </div>`;
+        });
+      }
+
+      //Filters products from a given array using a key value pair to filter.
+      //If the value is ".", returns the entire array (show all products).
+      function filterProducts(array, key, value) {
+        if (value === ".") {
+          return array;
+        } else {
+          let filteredProducts = array.filter((products) => {
+            return products[key] === value;
+          });
+          return filteredProducts;
+        }
+      }
+    </script>
+  </body>
+</html>
