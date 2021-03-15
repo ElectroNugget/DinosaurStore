@@ -48,9 +48,9 @@ function populateCart() {
   <td>${dinosaur.productName}</td>
   <td>${dinosaur.quantity}</td>
   <td>${(dinosaur.price * dinosaur.quantity).toLocaleString()} USD</td>
-  <td><badge class="badge badge-danger" onclick="removeItem(\'${
+  <td><i class="fas fa-trash-alt" onclick="removeItem(\'${
     dinosaur.productName
-  }\')">X</button></td>
+  }\')" style="color:red">
   </tr>`;
   });
   document.getElementById("totalPrice").innerHTML =
